@@ -1,0 +1,12 @@
+*  {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 50px;
+}
+
+.container li {
+    margin: 30px;
+}
