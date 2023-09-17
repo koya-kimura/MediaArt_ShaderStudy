@@ -1,5 +1,12 @@
 let pointSprite;
 
+let params = {
+	r: 1,
+	g: 0,
+	b: 0,
+	a: 1,
+};
+
 function preload() {
 	pointSprite = loadShader("./assets/shader.vert", "./assets/shader.frag")
 }
@@ -14,12 +21,19 @@ function setup() {
 	gl.disable(gl.DEPTH_TEST);
 	gl.enable(gl.BLEND);
 	gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+
+	const gui = new dat.GUI();
+	gui.add(params, 'r', 0, 1, 0.01);
+	gui.add(params, 'g', 0, 1, 0.01);
+	gui.add(params, 'b', 0, 1, 0.01);
+	gui.add(params, 'a', 0, 1, 0.01);
 }
 
 function draw() {
 	background(0);
 
 	shader(pointSprite);
+	pointSprite.setUniform('uColor', [params.r, params.g, params.b, params.a]);
 
 	// pointSprite.setUniform("uSpriteColor", [1, 0, 0, 1]);
 	// pointSprite.bindTexture();
