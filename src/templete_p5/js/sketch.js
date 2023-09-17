@@ -1,21 +1,31 @@
-//this variable will hold our shader object
 let simpleShader;
+
+let params = {
+	r:1,
+	g:0,
+	b:0,
+	a:1,
+};
 
 function preload() {
     simpleShader = loadShader('./assets/shader.vert', './assets/shader.frag');
 }
 
 function setup() {
-    // shaders require WEBGL mode to work
     createCanvas(windowWidth, windowHeight, WEBGL);
     noStroke();
+
+	const gui = new dat.GUI();
+	gui.add(params, 'r', 0, 1, 0.01);
+	gui.add(params, 'g', 0, 1, 0.01);
+	gui.add(params, 'b', 0, 1, 0.01);
+	gui.add(params, 'a', 0, 1, 0.01);
 }
 
 function draw() {
-    // shader() sets the active shader with our shader
     shader(simpleShader);
+	simpleShader.setUniform('uColor', [params.r, params.g, params.b, params.a]);
 
-    // rect gives us some geometry on the screen
     rect(0, 0, width, height);
 }
 
