@@ -35,12 +35,10 @@ function draw() {
 	shader(pointSprite);
 	pointSprite.setUniform('uColor', [params.r, params.g, params.b, params.a]);
 
-	// pointSprite.setUniform("uSpriteColor", [1, 0, 0, 1]);
-	// pointSprite.bindTexture();
-
 	myPoints(5000);
 }
 
+//この関数の使い方がわからない
 function myPoints(num) {
 	const gId = `myPoints|${num}`;
 	if (!this._renderer.geometryInHash(gId)) {
